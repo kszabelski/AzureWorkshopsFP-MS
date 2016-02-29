@@ -1,6 +1,10 @@
 using System;
+using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
+using Microsoft.ApplicationInsights;
+using Microsoft.ApplicationInsights.DataContracts;
+using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 
@@ -11,6 +15,7 @@ namespace Common
         private const string ContainerName = "constructionprogressfiles";
         private readonly CloudBlobContainer _container;
         private readonly StorageUri _blobStorageUri;
+        private readonly TelemetryClient _telemetry = new TelemetryClient();
 
         public FilesStorageService(string storageConnectionString)
         {
@@ -28,6 +33,7 @@ namespace Common
             _blobStorageUri = storageAccount.BlobStorageUri;
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
             _container = blobClient.GetContainerReference(ContainerName);
+            _telemetry.InstrumentationKey = TelemetryConfiguration.Active.InstrumentationKey;
         }
 
         public async Task<string> UploadFile(string fileName, Stream file, string mimeType)
@@ -41,6 +47,8 @@ namespace Common
             CloudBlockBlob blockBlob = _container.GetBlockBlobReference(fileName);
             blockBlob.Properties.ContentType = mimeType;
             await blockBlob.UploadFromStreamAsync(file);
+
+            _telemetry.TrackTrace(string.Format(CultureInfo.InvariantCulture, "Uploaded file {0}", fileName), SeverityLevel.Information);
 
             return blockBlob.Uri.AbsoluteUri;
         }
