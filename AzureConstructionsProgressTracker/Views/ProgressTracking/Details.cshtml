@@ -1,0 +1,44 @@
+﻿@model Common.ProgressTrackingEntry
+
+@{
+    ViewBag.Title = "Progress tracking entry details";
+}
+
+<h2>Progress tracking entry details</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            Project
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConstructionProject.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EntryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EntryDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+    </dl>
+    @if (!string.IsNullOrWhiteSpace(Model.PictureReference))
+    {
+        <div>
+            <img src="@Model.PictureReference" alt="Uploaded picture" height="800"/>
+        </div>
+    }
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+</p>
