@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Common;
 using Microsoft.ApplicationInsights.Extensibility;
 
 namespace AzureConstructionsProgressTracker
@@ -20,6 +21,8 @@ namespace AzureConstructionsProgressTracker
             {
                 TelemetryConfiguration.Active.InstrumentationKey = instrumentationKey;
             }
+
+            ServiceBusManager.CreateDefault()?.CreateQueue();
         }
     }
 }

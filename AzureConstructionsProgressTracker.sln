@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureConstructionsProgressT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{5FF4EA3C-8D06-4879-8DA4-497CB6E97185}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PictureOptimizer", "PictureOptimizer\PictureOptimizer.csproj", "{7E002E21-B10F-4976-B6AE-65EA702CE216}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5FF4EA3C-8D06-4879-8DA4-497CB6E97185}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FF4EA3C-8D06-4879-8DA4-497CB6E97185}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FF4EA3C-8D06-4879-8DA4-497CB6E97185}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E002E21-B10F-4976-B6AE-65EA702CE216}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E002E21-B10F-4976-B6AE-65EA702CE216}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E002E21-B10F-4976-B6AE-65EA702CE216}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E002E21-B10F-4976-B6AE-65EA702CE216}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

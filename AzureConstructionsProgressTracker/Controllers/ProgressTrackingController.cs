@@ -15,10 +15,12 @@ namespace AzureConstructionsProgressTracker.Controllers
     {
         private readonly ConstructionsProgressTrackerContext _db = new ConstructionsProgressTrackerContext();
         private readonly FilesStorageService _filesStorageService;
+        private readonly ServiceBusManager _serviceBusManager;
 
         public ProgressTrackingController()
         {
             _filesStorageService = new FilesStorageService(ConfigurationManager.ConnectionStrings["AzureStorage"].ConnectionString);
+            _serviceBusManager = ServiceBusManager.CreateDefault();
         }
 
         // GET: ProgressTracking
@@ -72,6 +74,12 @@ namespace AzureConstructionsProgressTracker.Controllers
                 progressTrackingEntry.EntryDate = DateTime.Now;
                 _db.ProgressTrackingEntries.Add(progressTrackingEntry);
                 await _db.SaveChangesAsync();
+
+                await _serviceBusManager.Enqueue(new ResizePictureMessage
+                {
+                    Id = progressTrackingEntry.Id,
+                    PictureReference = progressTrackingEntry.PictureReference
+                });
 
                 return RedirectToAction("Index");
             }
