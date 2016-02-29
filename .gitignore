@@ -1,0 +1,8 @@
+obj
+bin
+packages
+.vs
+*.mdf
+*.ldf
+LoadTests/TestResults/
+*.webtestresult
