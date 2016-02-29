@@ -80,7 +80,7 @@ Wstęp: Zrób deploy aplikacji na usługę Web App wykorzystując opcje z ustawi
 Zacznij to ćwiczenie na kodzie w wersji:
 
 ``` git 
-git checkout  03-app-insights 
+git checkout  04-web-jobs-base 
 
 ```
 
@@ -93,7 +93,7 @@ git checkout  03-app-insights
 Gotowe rozwiązanie można znaleźć na kolejnym branchu:
 
 ``` git 
-git checkout 04-web-jobs 
+git checkout 04-web-jobs-ready
 
 ```
 
@@ -128,7 +128,7 @@ git checkout 04-web-jobs
 Zacznij to ćwiczenie na kodzie w wersji:
 
 ``` git 
-git checkout master 
+git checkout 04-web-jobs-ready 
 
 ```
 

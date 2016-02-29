@@ -46,7 +46,6 @@ namespace AzureConstructionsProgressTracker.Controllers
 
         // POST: ProgressTracking/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Notes,PictureReference,ConstructionProjectId")] ProgressTrackingEntry progressTrackingEntry)
         {
             if (ModelState.IsValid)
