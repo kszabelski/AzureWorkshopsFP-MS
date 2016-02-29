@@ -132,13 +132,10 @@ git checkout 04-web-jobs-ready
 
 ```
 
-- Stwórz nowe Azure Active Directory (Classic Azure Portal) (or use Training Future Processing)
+- Stwórz nowe Azure Active Directory (Classic Azure Portal)
 - W Visual Studio użyj opcji „Configure Azure AD Authentication” w menu kontekstowym aplikacji webowej.
 - Postępuj zgodnie z kreatorem, wybierając stworzone konto AD.
-- Rozwiąż kilka problemów:
-    - Na moment tworzenia tego szkolenia, występuje problem z wersją Microsoft.Data.Edm. Aby go rozwiązać, należy wykonać polecenie "Update-Package Microsoft.Data.Edm" w Package Manager Console
-    - Usuń z kodu HTML kod (4 wystąpienia): @Html.AntiForgeryToken()
-- Aby zapewnić możliwość wylogowania, umieść fragment kodu w głównym dokumencie HTML aplikacji. @Html.Partial("_LoginPartial")  // "<ul class="nav navbar-nav">"
+- Aby zapewnić możliwość wylogowania, umieść fragment kodu w pasku nawigacji, w głównym dokumencie HTML aplikacji: @Html.Partial("_LoginPartial")
 
 Pełne rozwiązanie znajduje się na branchu
 
