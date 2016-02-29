@@ -32,7 +32,6 @@
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
             @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
             <form action="@Url.Action("Delete")" method="post">
-                @Html.AntiForgeryToken()
                 <input type="hidden" name="id" value="@item.Id" />
                 <button class="btn btn-danger btn-sm">Remove</button>
             </form>
