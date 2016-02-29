@@ -11,6 +11,7 @@ using Common;
 
 namespace AzureConstructionsProgressTracker.Controllers
 {
+    [Authorize]
     public class ProgressTrackingController : Controller
     {
         private readonly ConstructionsProgressTrackerContext _db = new ConstructionsProgressTrackerContext();

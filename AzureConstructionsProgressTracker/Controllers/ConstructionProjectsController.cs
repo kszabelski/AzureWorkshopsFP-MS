@@ -6,6 +6,7 @@ using Common;
 
 namespace AzureConstructionsProgressTracker.Controllers
 {
+    [Authorize]
     public class ConstructionProjectsController : Controller
     {
         private ConstructionsProgressTrackerContext db = new ConstructionsProgressTrackerContext();
