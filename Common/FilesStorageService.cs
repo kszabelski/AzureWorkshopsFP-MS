@@ -1,22 +1,48 @@
+using System;
 using System.IO;
 using System.Threading.Tasks;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace Common
 {
     public class FilesStorageService
     {
-        public Task<string> UploadFile(string fileName, Stream file, string mimeType)
-        {
-            ////var storageAccount = CloudStorageAccount.Parse("azureStorageConnectionString");
-            ////var blobClient = storageAccount.CreateCloudBlobClient();
-            ////var container = blobClient.GetContainerReference("containername");
-            ////container.CreateIfNotExists();
-            ////container.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Container });
-            ////var blockBlob = container.GetBlockBlobReference(fileName);
-            ////blockBlob.Properties.ContentType = mimeType;
-            ////await blockBlob.UploadFromStreamAsync(file);
+        private const string ContainerName = "constructionprogressfiles";
+        private readonly CloudBlobContainer _container;
+        private readonly StorageUri _blobStorageUri;
 
-            return Task.FromResult(string.Empty);
+        public FilesStorageService(string storageConnectionString)
+        {
+            if (string.IsNullOrEmpty(storageConnectionString))
+            {
+                throw new ArgumentNullException(nameof(storageConnectionString));
+            }
+
+            CloudStorageAccount storageAccount;
+            if (!CloudStorageAccount.TryParse(storageConnectionString, out storageAccount))
+            {
+                throw new ArgumentException("Could not parse the connection string.", nameof(storageConnectionString));
+            }
+
+            _blobStorageUri = storageAccount.BlobStorageUri;
+            CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+            _container = blobClient.GetContainerReference(ContainerName);
+        }
+
+        public async Task<string> UploadFile(string fileName, Stream file, string mimeType)
+        {
+            if (!_container.Exists())
+            {
+                _container.Create();
+                _container.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
+            }
+
+            CloudBlockBlob blockBlob = _container.GetBlockBlobReference(fileName);
+            blockBlob.Properties.ContentType = mimeType;
+            await blockBlob.UploadFromStreamAsync(file);
+
+            return blockBlob.Uri.AbsoluteUri;
         }
     }
 }
