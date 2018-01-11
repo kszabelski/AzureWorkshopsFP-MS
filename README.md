@@ -21,6 +21,10 @@ Część druga
 - W Visual Studio użyj opcji „publish” w menu kontekstowym aplikacji webowej i opublikuj projekt wykorzystując przygotowane connection string.
 - Przetestuj aplikację uruchomioną w chmurze Microsoft Azure.
 
+Rozwiązywanie problemów
+
+- [Skorzystaj z Remote Debugging](https://docs.microsoft.com/pl-pl/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio)
+- Zaloguj błąd do [Trace](https://msdn.microsoft.com/en-us/library/system.diagnostics.trace.traceerror%28v=vs.110%29.aspx) i uruchom [Diagnostic logs](https://docs.microsoft.com/en-us/azure/app-service/web-sites-enable-diagnostic-log) następnie skorzystaj z zakładki Log Stream w portalu.
 
 ### Zadanie 3 - storage
 
